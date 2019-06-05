@@ -11,21 +11,16 @@
       </tr>
     </thead>
     <tbody>
-      {% for j in context.jobs %}
+      {% for g in context.projects %}
         <tr>
-          <th scope="row">{{ j.name }}</th>
-          <td>{{ j.color }}</td>
-          <td>{{ j.status }}</td>
+          <th scope="row">{{ g.id }}</th>
+          <td>{{ g.name }}</td>
+          <td>{{ g.owner.name }}</td>
           <td>
             <div class="row">
               <div class="col-6">
-                <a href="/jenkins/build/{{ j.name }}">
+                <a href="/gitlab/{{ g.id }}">
                   <i class="fas fa-play"></i>
-                </a>
-              </div>
-              <div class="col-6">
-                <a href="/jenkins/update/{{ j.name }}">
-                  <i class="fas fa-stop"></i>
                 </a>
               </div>
             </div>

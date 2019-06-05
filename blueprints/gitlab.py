@@ -23,3 +23,16 @@ def get_gitlab():
     }
 
     return flask.render_template('gitlab.html', context=context)
+
+@blueprint.route('/gitlab/<int:projectid>', methods=[ 'GET' ])
+def get_project_commits(projectid):
+
+    PROJECT_COMMITS = 'https://gitlab.com/api/v4/projects/' + str(projectid) + '/repository/commits?private_token={}'.format(ACCESS_TOKEN)
+    
+    context = {
+        'page': 'gitlab',
+        'projects': requests.get(PROJECTS_URL).json(),
+        'commits': requests.get(PROJECT_COMMITS).json(),
+    }
+
+    return flask.render_template('gitlab_commit.html', context=context)
