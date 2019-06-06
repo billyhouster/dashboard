@@ -6,12 +6,14 @@ import flask
 import blueprints.docker
 import blueprints.jenkins
 import blueprints.gitlab
+import blueprints.sign_in
 
 app = flask.Flask(__name__)
 
 app.register_blueprint(blueprints.docker.blueprint)
 app.register_blueprint(blueprints.jenkins.blueprint)
 app.register_blueprint(blueprints.gitlab.blueprint)
+app.register_blueprint(blueprints.sign_in.blueprint)
 
 @app.route('/', methods=[ 'GET' ])
 def index():
